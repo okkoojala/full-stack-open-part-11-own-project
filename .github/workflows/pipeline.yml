@@ -43,7 +43,7 @@ jobs:
         if: ${{ success() && github.event_name == 'push' && !contains( join(github.event.commits.*.message, ', '), '#skip')}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "full-stack-part-eleven"
+          heroku_app_name: "full-stack-part-eleven-oojala"
           heroku_email: "okko.ojala@gmail.com"   
           healthcheck: "https://full-stack-part-eleven-oojala.herokuapp.com/health"                   
           checkstring: "ok"     
