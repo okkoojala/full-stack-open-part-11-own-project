@@ -29,15 +29,7 @@ jobs:
         with:          
           start: npm run start-prod          
           wait-on: http://localhost:5000              
-          command: npm run test-e2e 
-#      - name: Notify Slack on build failure
-#        uses: 8398a7/action-slack@v3
-#        with:
-#          status: ${{ job.status }}
-#          fields: repo,message,commit,author,took
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-#        if: ${{ failure() }}             
+          command: npm run test-e2e            
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         if: ${{ success() && github.event_name == 'push' && !contains( join(github.event.commits.*.message, ', '), '#skip')}}
@@ -47,22 +39,7 @@ jobs:
           heroku_email: "okko.ojala@gmail.com"   
           healthcheck: "https://full-stack-part-eleven-oojala.herokuapp.com/health"                   
           checkstring: "ok"     
-          rollbackonhealthcheckfailed: true               
-#      - name: Notify Slack on successful deployment
-#        uses: 8398a7/action-slack@v3      
-#        with:
-#          status: custom
-#          fields: repo,message
-#          custom_payload: |
-#            {
-#              attachments: [{
-#                color: 'good',
-#                text: `New version deployed to Heroku: https://full-stack-part-eleven.herokuapp.com`,
-#              }]
-#            }          
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#        if: ${{ success() }}              
+          rollbackonhealthcheckfailed: true                           
       - name: Checkout before bumping version
         uses: actions/checkout@v2                         
       - name: Bump version        
