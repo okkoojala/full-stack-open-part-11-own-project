@@ -29,7 +29,7 @@ const Notification = ({ notification }) => {
         clearTimeout(timeout)
       })
     }
-
+  // eslint-disable-next-line
   },[notification])
 
   return (
