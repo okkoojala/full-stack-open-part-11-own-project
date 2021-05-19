@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 
-const Notification = ({notification}) => {
+const Notification = ({ notification }) => {
   const dispatch = useDispatch()
 
   const style = {
@@ -19,10 +19,10 @@ const Notification = ({notification}) => {
     if(notification.title)
     {
       let timeout = setTimeout(() => {
-          dispatch({
-            type:'CHANGE',
-            data:{title:'',delay:5}
-          })
+        dispatch({
+          type:'CHANGE',
+          data:{ title:'',delay:5 }
+        })
       },notification.delay * 1000)
 
       return(() => {
@@ -33,13 +33,13 @@ const Notification = ({notification}) => {
   },[notification])
 
   return (
-    
+
     notification.title
-    ?
+      ?
       <div style={style}>
         {notification.title}
       </div>
-    :
+      :
       null
   )
 }

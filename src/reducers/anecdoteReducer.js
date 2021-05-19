@@ -1,6 +1,6 @@
-import anecdoteService, {createNew} from '../services/anecdoteService' 
+import anecdoteService from '../services/anecdoteService'
 
-import {setNotification} from './notificationReducer' 
+import { setNotification } from './notificationReducer'
 
 const anecdotesAtStart = []
 
@@ -18,35 +18,38 @@ const initialState = anecdotesAtStart.map(asObject)
 
 const anecdoteReducer = (state = initialState, action) => {
 
-
   switch (action.type){
-    case 'VOTE':
-      let obj = state.map((i) => {
-        if(i.id === action.data.id)
-        {
-          let updated = Object.assign({}, i)
-          updated.votes++
-          return updated
-        }
-        return i
-      })
-      return [...obj]
+  case 'VOTE':
+  {
+    const obj = state.map((i) => {
+      if(i.id === action.data.id)
+      {
+        let updated = Object.assign({}, i)
+        updated.votes++
+        return updated
+      }
+      return i
+    })
+    return [...obj]
+  }
   case 'ADD':
-    let newObj = action.data
-    let newState = [...state,newObj];
+  {
+    const newObj = action.data
+    const newState = [...state,newObj]
     return newState
+  }
   case 'INIT_ANECDOTES':
-      return action.data    
+    return action.data
   default:
-      return state
-  }  
+    return state
+  }
 }
 
 export const vote = (anecdote) => {
   return async dispatch => {
     await anecdoteService.addVote(anecdote)
-    dispatch({type:"VOTE", data:{id:anecdote.id}})    
-    dispatch(setNotification(`You voted: ${anecdote.content}`,5))    
+    dispatch({ type:'VOTE', data:{ id:anecdote.id } })
+    dispatch(setNotification(`You voted: ${anecdote.content}`,5))
   }
 }
 
@@ -57,8 +60,8 @@ export const addNew = (content) => {
       ,votes:0
     })
     console.log(newAnecdote,content)
-    dispatch({type:"ADD", data:newAnecdote})
-    dispatch(setNotification(`New anecdote`,5))  
+    dispatch({ type:'ADD', data:newAnecdote })
+    dispatch(setNotification('New anecdote',5))
   }
 }
 

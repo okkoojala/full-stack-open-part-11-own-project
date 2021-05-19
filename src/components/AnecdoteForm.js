@@ -1,17 +1,17 @@
 import React from 'react'
-import {addNew} from '../reducers/anecdoteReducer'
-import {setNotification} from '../reducers/notificationReducer'
+import { addNew } from '../reducers/anecdoteReducer'
+import { setNotification } from '../reducers/notificationReducer'
 import { connect, useDispatch } from 'react-redux'
 
-const AnecdoteForm = (props) => {
+const AnecdoteForm = () => {
   const dispatch = useDispatch()
 
   const addNewHandler = async(event) =>
   {
-    event.preventDefault(); 
+    event.preventDefault()
     const content = event.target.anecdote.value
-    event.target.anecdote.value = ''    
-    
+    event.target.anecdote.value = ''
+
     try{
       dispatch(addNew(content))
       dispatch(setNotification('New anecdote',5))
@@ -28,7 +28,7 @@ const AnecdoteForm = (props) => {
       <form onSubmit={addNewHandler}>
         <div><input name={'anecdote'}/></div>
         <button>create</button>
-      </form>    
+      </form>
     </div>
   )
 }
