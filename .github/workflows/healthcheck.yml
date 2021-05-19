@@ -12,7 +12,7 @@ jobs:
         uses: jtalk/url-health-check-action@v1.5
         with:
           # Check the following URLs one by one sequentially
-          url: https://full-stack-part-eleven.herokuapp.com/health
+          url: https://full-stack-part-eleven-oojala.herokuapp.com/health
           # Follow redirects, or just report success on 3xx status codes
           follow-redirect: no # Optional, defaults to "no"
           # Fail this action after this many failed attempts
