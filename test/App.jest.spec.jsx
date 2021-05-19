@@ -27,7 +27,7 @@ describe('<App />', () => {
       </Provider>)
     })
     expect(axiosMock.get).toHaveBeenCalledTimes(1)
-    expect(axiosMock.get).toHaveBeenCalledWith('http://localhost:5000/anecdotes')
+    expect(axiosMock.get).toHaveBeenCalledWith('/anecdotes')
   })
 
   it('shows Heading', async () => {
